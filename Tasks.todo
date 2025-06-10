@@ -26,8 +26,21 @@
         ☐ Criar a mutation para fazer insert de um payment do tipo pix
 
     Fazer frontend
+    
+        Home
+        ☐ Intro do projeto
+        ☐ Links
+
+        Account
+        ☐ Nome e email
+        ☐ total em conta
+        ☐ historico de transacoes
+
+        Pix
         ☐ Fazer consulta do pix
-        ☐ Fazer transacao (fake) do pagamento via pix
+        ☐ Fazer transacao do pagamento via pix
+
+
 
     
 
