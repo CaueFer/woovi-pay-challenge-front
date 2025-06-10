@@ -23,6 +23,12 @@ export const Home = () => {
           Authentication, and using the Token Bucket Algorithm.{" "}
         </p>
 
+        <h3 className="font-bold mt-10">Authentication</h3>
+        <p>
+          Using JSON Web Tokens (JWT) for Robust Authentication and Token
+          Generation in Modern Applications
+        </p>
+
         <h3 className="font-bold mt-10">Rate Limit Strategy</h3>
         <p>
           The Token Bucket algorithm was implemented, with each user allocated a
