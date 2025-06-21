@@ -67,7 +67,7 @@ export function SignupForm({
         <div className="flex flex-col gap-6">
           <p className="text-center text-sm">
             Already have an account?
-            <Link to="/login" className="underline underline-offset-4">
+            <Link to="/login" className="underline underline-offset-4 ml-2">
               Login
             </Link>
           </p>

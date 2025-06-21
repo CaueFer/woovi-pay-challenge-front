@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
 import { toast } from "sonner";
+import { QuickLogin } from "../quickLogin";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -65,7 +66,7 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("relative flex flex-col gap-6", className)} {...props}>
       <form action={handleLogin}>
         <div className="flex flex-col gap-6">
           <p className="text-center text-sm">
@@ -107,6 +108,8 @@ export function LoginForm({
           </div>
         </div>
       </form>
+
+      <QuickLogin />
     </div>
   );
 }
