@@ -3,16 +3,18 @@ import { Link, useNavigate } from "react-router";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
 import { toast } from "sonner";
-import { QuickLogin } from "../quickLogin";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { QuickLoginBtn } from "../quickLogin/quickLoginBtn";
 import SpinnerSvg from "@/components/svg/spinner";
 import { PinInput } from "@/components/ui/pinInput";
 
 import { cn } from "@/lib/utils";
 import { post } from "@/lib/helpers/fetch.helper";
 import { jwtCookiekey } from "@/lib/defaultConstants";
+import { QuickLoginForm } from "../quickLogin/quickLoginForm";
 
 export function LoginForm({
   className,
@@ -24,6 +26,8 @@ export function LoginForm({
 
   const [logged, setLogged] = useState(false);
   const [isLoading, setisLoading] = useState(false);
+
+  const [showQuickLogin, setShowQuickLogin] = useState(false);
 
   const handleLogin = (formData: FormData) => {
     setLogged(false);
@@ -75,41 +79,44 @@ export function LoginForm({
               Sign Up
             </Link>
           </p>
-          <div className="flex flex-col gap-6">
-            {/* USERNAME */}
-            <div className="grid gap-2">
-              <Label htmlFor="username">Username</Label>
-              <Input
-                id="username"
-                name="username"
-                type="text"
-                placeholder="Your beauty username..."
-                required
-                className="autofill:bg-background"
-                disabled={logged}
-              />
-            </div>
+          {showQuickLogin && <QuickLoginForm />}
+          {!showQuickLogin && (
+            <div className="flex flex-col gap-6">
+              {/* USERNAME */}
+              <div className="grid gap-2">
+                <Label htmlFor="username">Username</Label>
+                <Input
+                  id="username"
+                  name="username"
+                  type="text"
+                  placeholder="Your beauty username..."
+                  required
+                  className="autofill:bg-background"
+                  disabled={logged}
+                />
+              </div>
 
-            {/* PIN */}
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="pin">Pin</Label>
-              <PinInput id="pin" name="pin" required disabled={logged} />
+              {/* PIN */}
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="pin">Pin</Label>
+                <PinInput id="pin" name="pin" required disabled={logged} />
+              </div>
             </div>
+          )}
 
-            <Button type="submit" className="w-full">
-              {isLoading ? (
-                <>
-                  <SpinnerSvg /> Loading...
-                </>
-              ) : (
-                "Login"
-              )}
-            </Button>
-          </div>
+          <Button type="submit" className="w-full">
+            {isLoading ? (
+              <>
+                <SpinnerSvg /> Loading...
+              </>
+            ) : (
+              "Login"
+            )}
+          </Button>
         </div>
       </form>
 
-      <QuickLogin />
+      <QuickLoginBtn setShowQuickLogin={setShowQuickLogin} />
     </div>
   );
 }
