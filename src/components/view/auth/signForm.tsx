@@ -1,8 +1,8 @@
+import { toast } from "sonner";
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
-import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export function SignupForm({
     setisLoading(true);
 
     const username = formData.get("username");
-    const pin = formData.get("pin");
+    const pin = Number(formData.get("pin"));
 
     post("/auth/signup", {
       username,
@@ -48,12 +48,13 @@ export function SignupForm({
         }
 
         if (res.status >= 400) {
-          toast.error(data.detail);
+          toast.error(data.message);
         }
       })
       .catch((err: Error) => {
         console.error(err);
-
+        
+        toast.error("Server error! Try again");
         setLogged(false);
       })
       .finally(() => {
@@ -92,8 +93,8 @@ export function SignupForm({
             <div className="flex flex-col gap-2">
               <Label htmlFor="pin">Pin</Label>
               <PinInput
-                id="password"
-                name="password"
+                id="pin"
+                name="pin"
                 required
                 disabled={logged}
               />

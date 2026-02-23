@@ -36,7 +36,7 @@ export function LoginForm({
     const username = formData.get("username");
     const pin = formData.get("pin");
 
-    post("/auth/login", {
+    post("/auth/signin", {
       username,
       pin,
     })
